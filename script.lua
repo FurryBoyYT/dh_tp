@@ -33,11 +33,29 @@ if table.find(main, checkplaceid) then
     deleteAllChildrenExceptTerrain(CoreGui)
 
     local sound2 = Instance.new("Sound", game:GetService("Workspace"))
-    sound2.SoundId = "rbxassetid://1841118237"
     sound2.Looped = true
     sound2.Volume = 0.3
-    sound2:Play()
 
+    local randomMusic = math.random(1, 6)
+    if randomMusic = 1 then
+        sound2.SoundId = "rbxassetid://1841118237"
+        sound2:Play()
+    elseif randomMusic = 2 then
+        sound2.SoundId = "rbxassetid://1846199973"
+        sound2:Play()
+    elseif randomMusic = 3 then
+        sound2.SoundId = "rbxassetid://1844684915"
+        sound2:Play()
+    elseif randomMusic = 4 then
+        sound2.SoundId = "rbxassetid://1838825149"
+        sound2:Play()
+    elseif randomMusic = 5 then
+        sound2.SoundId = "rbxassetid://1845385519"
+        sound2:Play()
+    elseif randomMusic = 6 then
+        sound2.SoundId = "rbxassetid://1841476350"
+        sound2:Play()
+    end
     local ScreenGui = Instance.new("ScreenGui", CoreGui)
     ScreenGui.Name = "DA HOOD TELEPORTATION"
     ScreenGui.Enabled = true
