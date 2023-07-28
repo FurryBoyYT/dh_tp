@@ -161,9 +161,12 @@ if table.find(main, checkplaceid) then
         StatusLabel.Text = "Teleporting..."
         Option1Button.Visible = false
         Option2Button.Visible = false
-        TeleportService:Teleport(DaHoodPlaceID, Players.LocalPlayer)
-        task.wait(5)
-        StatusLabel.Text = "Experiencing Teleport Issues? Try Again."
+        -- // use pcall because it won't throw errors.
+        pcall(function()
+            TeleportService:Teleport(DaHoodPlaceID, Players.LocalPlayer)
+        end)
+        task.wait(5) 
+        StatusLabel.Text = "Teleport Failed! Please Try Again." --"Experiencing Teleport Issues? Try Again."
         task.wait(1.5)
         StatusLabel.Text = "Choose an option."
         Option1Button.Visible = true
@@ -185,9 +188,12 @@ if table.find(main, checkplaceid) then
                 StatusLabel.Text = "Teleporting..."
                 CancelButton.Visible = false
                 TeleportButton.Visible = false
-                TeleportService:TeleportToPlaceInstance(DaHoodPlaceID, jobId)
+                -- // use pcall because it won't throw errors.
+                pcall(function()
+                    TeleportService:TeleportToPlaceInstance(DaHoodPlaceID, jobId)
+                end)
                 task.wait(5)
-                StatusLabel.Text = "Experiencing Teleport Issues? Try Again."
+                StatusLabel.Text = "Teleport Failed! Please Try Again." --"Experiencing Teleport Issues? Try Again."
                 task.wait(1.5)
                 StatusLabel.Text = "Enter JobID Above."
                 CancelButton.Visible = true
@@ -232,7 +238,6 @@ elseif table.find(dh, checkplaceid) then
     TeleportBack.MouseButton1Click:Connect(function()
         play("6042053626", 0.5, false)
         TeleportBack.Text = "Shutting Down..."
-        MainFrame.Visible = false
         task.wait(1.5)
         game:Shutdown()
     end)
