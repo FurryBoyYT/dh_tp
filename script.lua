@@ -62,7 +62,7 @@ if table.find(main, checkplaceid) then
         textlabel6.Text = "Welcome Back, "..Players.LocalPlayer.Name
     else
         textlabel6.Text = "Welcome, "..Players.LocalPlayer.Name
-        writefile("DoNotDelete_Welcoming", math.random(1, 1000000).."random number Xd")
+        writefile("DoNotDelete_Welcoming", math.random(1, 1000000).." random number Xd")
     end
 
     local MainFrame = Instance.new("Frame")
@@ -72,7 +72,7 @@ if table.find(main, checkplaceid) then
     MainFrame.Size = UDim2.new(0, 400, 0, 200)
 
     local ShutdownButton = Instance.new("ImageButton", ScreenGui)
-    ShutdownButton.Position = UDim2.new(0.5, -959, 0.5, -559)
+    ShutdownButton.Position = UDim2.new(0.5, -243, 0.5, -100)
     ShutdownButton.Size = UDim2.new(0.4, -726, 0, 40)
     ShutdownButton.Image = "rbxassetid://14220822856"
     
