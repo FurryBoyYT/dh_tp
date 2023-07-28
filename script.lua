@@ -31,7 +31,7 @@ if table.find(main, checkplaceid) then
     sound2.Volume = 0.3
     
     -- // make a list of sounds here.
-    local sounds = {"1841118237", "1846199973", "1844684915", "1838825149", "1845385519", "1841476350"}
+    local sounds = {"1841118237", "1846199973", "1844684915", "1838825149", "1845385519", "1841476350", "1845463211", "1842960025", "1845439457", "1838124274", "9046476113", "1843700415"}
 
     local function play_random_music(soundId)
         sound2.SoundId = "rbxassetid://" .. soundId
