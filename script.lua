@@ -1,4 +1,3 @@
-
 getgenv().delay1 = 0.05
 getgenv().delay2 = 0.05
 
@@ -40,8 +39,6 @@ if table.find(main, checkplaceid) then
         print("now playing ".. soundId)
     end
 
-
-
     local isalreadyexisting = false
     function clickSound()
         if isalreadyexisting then 
@@ -61,10 +58,7 @@ if table.find(main, checkplaceid) then
         sound:Destroy()
         task.wait(getgenv().delay2)
         isalreadyexisting = false
-
     end
-
-
 
     spawn(function()
         while true do 
