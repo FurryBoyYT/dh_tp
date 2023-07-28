@@ -31,8 +31,8 @@ if table.find(main, checkplaceid) then
     game:GetService("Players").LocalPlayer.PlayerScripts:Destroy()
     deleteAllChildrenExceptTerrain(game:GetService("Workspace"))
     deleteAllChildrenExceptTerrain(CoreGui)
-    local sound2 = Instance.new("Sound", game:GetService("Workspace"))
 
+    local sound2 = Instance.new("Sound", game:GetService("Workspace"))
     sound2.SoundId = "rbxassetid://1841118237"
     sound2.Looped = true
     sound2.Volume = 0.3
@@ -56,19 +56,13 @@ if table.find(main, checkplaceid) then
     MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
     MainFrame.Size = UDim2.new(0, 400, 0, 200)
 
-        
-    local ShutdownButton = Instance.new("TextButton", ScreenGui)
-    ShutdownButton.BackgroundColor3 = Color3.new(0.2, 0.2, 0.2)
-    ShutdownButton.Position = UDim2.new(0.5, -59, 0.5, 350)
-    ShutdownButton.Size = UDim2.new(0.4, -650, 0, 40)
-    ShutdownButton.Font = Enum.Font.SourceSans
-    ShutdownButton.Text = "Shutdown"
-    ShutdownButton.TextColor3 = Color3.new(0, 255, 255)
-    ShutdownButton.TextSize = 20
+    local ShutdownButton = Instance.new("ImageButton", ScreenGui)
+    ShutdownButton.Position = UDim2.new(0.5, -959, 0.5, 558)
+    ShutdownButton.Size = UDim2.new(0.4, -726, 0, 40)
+    ShutdownButton.Image = "rbxassetid://14220822856"
     
     ShutdownButton.MouseButton1Click:Connect(function()
         play("6042053626", 1, false)
-        ShutdownButton.Text = "Shutting Down..."
         MainFrame.Visible = false
         task.wait(1.5)
         game:Shutdown()
