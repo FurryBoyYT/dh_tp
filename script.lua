@@ -1,12 +1,7 @@
-local function play(soundid, volume, looped)
-    local sound = Instance.new("Sound", game:GetService("Workspace"))
-    sound.SoundId = "rbxassetid://"..soundid
-    sound.Looped = looped
-    sound.PlayOnRemove = true
-    sound.Volume = volume
-    sound:Play()
-    sound:Destroy()
-end
+
+getgenv().delay1 = 0.05
+getgenv().delay2 = 0.05
+
 local LobbyPlaceID = 9689272943
 local DaHoodPlaceID = 2788229376
 local main = {LobbyPlaceID}
@@ -33,29 +28,61 @@ if table.find(main, checkplaceid) then
     deleteAllChildrenExceptTerrain(CoreGui)
 
     local sound2 = Instance.new("Sound", game:GetService("Workspace"))
-    sound2.Looped = true
+    sound2.Looped = false
     sound2.Volume = 0.3
+    
+    -- // make a list of sounds here.
+    local sounds = {"1841118237", "1846199973", "1844684915", "1838825149", "1845385519", "1841476350"}
 
-    local randomMusic = math.random(1, 6)
-    if randomMusic == 1 then
-        sound2.SoundId = "rbxassetid://1841118237"
+    local function play_random_music(soundId)
+        sound2.SoundId = "rbxassetid://" .. soundId
         sound2:Play()
-    elseif randomMusic == 2 then
-        sound2.SoundId = "rbxassetid://1846199973"
-        sound2:Play()
-    elseif randomMusic == 3 then
-        sound2.SoundId = "rbxassetid://1844684915"
-        sound2:Play()
-    elseif randomMusic == 4 then
-        sound2.SoundId = "rbxassetid://1838825149"
-        sound2:Play()
-    elseif randomMusic == 5 then
-        sound2.SoundId = "rbxassetid://1845385519"
-        sound2:Play()
-    elseif randomMusic == 6 then
-        sound2.SoundId = "rbxassetid://1841476350"
-        sound2:Play()
+        print("now playing ".. soundId)
     end
+
+
+
+    local isalreadyexisting = false
+    function clickSound()
+        if isalreadyexisting then 
+            print("there are already sounds!!!")
+            return
+        end
+        -- // this is a debug thing
+        print("click sound ran!")
+        isalreadyexisting = true
+        local sound = Instance.new("Sound", game:GetService("Workspace"))
+        sound.SoundId = "rbxassetid://6042053626"
+        sound.Looped = false 
+        --sound.PlayOnRemove = true
+        sound.Volume = 0.3
+        sound:Play()
+        task.wait(getgenv().delay1)
+        sound:Destroy()
+        task.wait(getgenv().delay2)
+        isalreadyexisting = false
+
+    end
+
+
+
+    spawn(function()
+        while true do 
+            task.wait()
+            -- // sound is playing.
+            if sound2.Playing == true then
+                -- // wait for sound to end.
+                sound2.Ended:Wait()
+            else
+                -- // sound is not playing, play a random sound out of list.
+                local SelectedSound = sounds[math.random(1, #sounds)]
+                -- // now play the music.
+                
+                play_random_music(SelectedSound)
+            end
+        end
+    end)
+
     local ScreenGui = Instance.new("ScreenGui", CoreGui)
     ScreenGui.Name = "DA HOOD TELEPORTATION"
     ScreenGui.Enabled = true
@@ -95,7 +122,7 @@ if table.find(main, checkplaceid) then
     ShutdownButton.Image = "rbxassetid://14220822856"
     
     ShutdownButton.MouseButton1Click:Connect(function()
-        play("6042053626", 0.5, false)
+        spawn(clickSound)
         textlabel6.Text = "Shutting Off..."
         MainFrame.Visible = false
         task.wait(1.5)
@@ -175,7 +202,7 @@ if table.find(main, checkplaceid) then
     TeleportButton.Visible = false
 
     Option1Button.MouseButton1Click:Connect(function()
-        play("6042053626", 0.5, false)
+        spawn(clickSound)
         StatusLabel.Text = "Teleporting..."
         Option1Button.Visible = false
         Option2Button.Visible = false
@@ -192,15 +219,15 @@ if table.find(main, checkplaceid) then
     end)
 
     Option2Button.MouseButton1Click:Connect(function()
-        play("6042053626", 0.5, false)
+        spawn(clickSound)
         StatusLabel.Text = "Enter JobID Above."
         Option1Button.Visible = false
         Option2Button.Visible = false
         TextBox.Visible = true
         TeleportButton.Visible = true
-
+        
         TeleportButton.MouseButton1Click:Connect(function()
-            play("6042053626", 0.5, false)
+            spawn(clickSound)
             local jobId = TextBox.Text
             if jobId ~= "" then
                 StatusLabel.Text = "Teleporting..."
@@ -229,7 +256,7 @@ if table.find(main, checkplaceid) then
 
         CancelButton.Visible = true
         CancelButton.MouseButton1Click:Connect(function()
-            play("6042053626", 0.5, false)
+            spawn(clickSound)
             Option1Button.Visible = true
             Option2Button.Visible = true
             TextBox.Visible = false
@@ -254,7 +281,7 @@ elseif table.find(dh, checkplaceid) then
     TeleportBack.TextSize = 20
     
     TeleportBack.MouseButton1Click:Connect(function()
-        play("6042053626", 0.5, false)
+        spawn(clickSound)
         TeleportBack.Text = "Shutting Down..."
         task.wait(1.5)
         game:Shutdown()
