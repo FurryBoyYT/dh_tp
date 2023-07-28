@@ -1,18 +1,3 @@
-local function deleteAllChildrenExceptTerrain(parent)
-    local children = parent:GetChildren()
-    for _, child in ipairs(children) do
-        if not child:IsA("Terrain") then
-            child:Destroy()
-        end
-    end
-end
-
-game:GetService("Players").LocalPlayer.Backpack:Destroy()
-game:GetService("Players").LocalPlayer.StarterGear:Destroy()
-game:GetService("Players").LocalPlayer.PlayerGui:Destroy()
-game:GetService("Players").LocalPlayer.PlayerScripts:Destroy()
-deleteAllChildrenExceptTerrain(game:GetService("Workspace"))
-deleteAllChildrenExceptTerrain(game:GetService("CoreGui"))
 local function play(soundid, volume, looped)
     local sound = Instance.new("Sound", game:GetService("Workspace"))
     sound.SoundId = "rbxassetid://"..soundid
@@ -31,7 +16,23 @@ local Players = game:GetService("Players")
 local TeleportService = game:GetService("TeleportService")
 local CoreGui = game:GetService("CoreGui")
 if table.find(main, checkplaceid) then
+    local function deleteAllChildrenExceptTerrain(parent)
+        local children = parent:GetChildren()
+        for _, child in ipairs(children) do
+            if not child:IsA("Terrain") then
+                child:Destroy()
+            end
+        end
+    end
+    
+    game:GetService("Players").LocalPlayer.Backpack:Destroy()
+    game:GetService("Players").LocalPlayer.StarterGear:Destroy()
+    game:GetService("Players").LocalPlayer.PlayerGui:Destroy()
+    game:GetService("Players").LocalPlayer.PlayerScripts:Destroy()
+    deleteAllChildrenExceptTerrain(game:GetService("Workspace"))
+    deleteAllChildrenExceptTerrain(CoreGui)
     local sound2 = Instance.new("Sound", game:GetService("Workspace"))
+
     sound2.SoundId = "rbxassetid://1841118237"
     sound2.Looped = true
     sound2.Volume = 0.3
