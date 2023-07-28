@@ -25,10 +25,10 @@ if table.find(main, checkplaceid) then
         end
     end
     
-    game:GetService("Players").LocalPlayer.Backpack:Destroy()
-    game:GetService("Players").LocalPlayer.StarterGear:Destroy()
-    game:GetService("Players").LocalPlayer.PlayerGui:Destroy()
-    game:GetService("Players").LocalPlayer.PlayerScripts:Destroy()
+    Players.LocalPlayer.Backpack:Destroy()
+    Players.LocalPlayer.StarterGear:Destroy()
+    Players.LocalPlayer.PlayerGui:Destroy()
+    Players.LocalPlayer.PlayerScripts:Destroy()
     deleteAllChildrenExceptTerrain(game:GetService("Workspace"))
     deleteAllChildrenExceptTerrain(CoreGui)
 
@@ -42,13 +42,21 @@ if table.find(main, checkplaceid) then
     ScreenGui.Name = "DA HOOD TELEPORTATION"
     ScreenGui.Enabled = true
     ScreenGui.ResetOnSpawn = false
-
+ 
     local BackgroundFrame = Instance.new("Frame")
     BackgroundFrame.Parent = ScreenGui
     BackgroundFrame.BackgroundColor3 = Color3.new(0, 0, 0)
     BackgroundFrame.BorderSizePixel = 0
     BackgroundFrame.Position = UDim2.new(0, -759, 0, -457)
     BackgroundFrame.Size = UDim2.new(0, 10000, 0, 10000)
+
+    local textlabel6 = Instance.new("TextLabel", ScreenGui)
+    textlabel6.TextColor3 = Color3.new(255, 255, 255)
+    textlabel6.Position = UDim2.new(0, 912, 0, 100)
+    textlabel6.Size = UDim2.new(0, 96, 0, 40)
+    textlabel6.BackgroundTransparency = 1
+    textlabel6.TextSize = 52
+    textlabel6.Text = "working 2023"
 
     local MainFrame = Instance.new("Frame")
     MainFrame.Parent = ScreenGui
@@ -62,7 +70,7 @@ if table.find(main, checkplaceid) then
     ShutdownButton.Image = "rbxassetid://14220822856"
     
     ShutdownButton.MouseButton1Click:Connect(function()
-        play("6042053626", 1, false)
+        play("6042053626", 0.5, false)
         MainFrame.Visible = false
         task.wait(1.5)
         game:Shutdown()
@@ -141,7 +149,7 @@ if table.find(main, checkplaceid) then
     TeleportButton.Visible = false
 
     Option1Button.MouseButton1Click:Connect(function()
-        play("6042053626", 1, false)
+        play("6042053626", 0.5, false)
         StatusLabel.Text = "Teleporting..."
         Option1Button.Visible = false
         Option2Button.Visible = false
@@ -155,7 +163,7 @@ if table.find(main, checkplaceid) then
     end)
 
     Option2Button.MouseButton1Click:Connect(function()
-        play("6042053626", 1, false)
+        play("6042053626", 0.5, false)
         StatusLabel.Text = "Enter JobID Above."
         Option1Button.Visible = false
         Option2Button.Visible = false
@@ -163,7 +171,7 @@ if table.find(main, checkplaceid) then
         TeleportButton.Visible = true
 
         TeleportButton.MouseButton1Click:Connect(function()
-            play("6042053626", 1, false)
+            play("6042053626", 0.5, false)
             local jobId = TextBox.Text
             if jobId ~= "" then
                 StatusLabel.Text = "Teleporting..."
@@ -189,7 +197,7 @@ if table.find(main, checkplaceid) then
 
         CancelButton.Visible = true
         CancelButton.MouseButton1Click:Connect(function()
-            play("6042053626", 1, false)
+            play("6042053626", 0.5, false)
             Option1Button.Visible = true
             Option2Button.Visible = true
             TextBox.Visible = false
@@ -214,7 +222,7 @@ elseif table.find(dh, checkplaceid) then
     TeleportBack.TextSize = 20
     
     TeleportBack.MouseButton1Click:Connect(function()
-        play("6042053626", 1, false)
+        play("6042053626", 0.5, false)
         TeleportBack.Text = "Shutting Down..."
         MainFrame.Visible = false
         task.wait(1.5)
