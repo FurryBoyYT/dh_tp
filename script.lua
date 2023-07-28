@@ -62,7 +62,7 @@ if table.find(main, checkplaceid) then
         textlabel6.Text = "Welcome Back, "..Players.LocalPlayer.Name
     else
         textlabel6.Text = "Welcome, "..Players.LocalPlayer.Name
-        appendfile("DoNotDelete_Welcoming")
+        appendfile("DoNotDelete_Welcoming", "cricket noises")
     end
 
     local MainFrame = Instance.new("Frame")
