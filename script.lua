@@ -56,7 +56,14 @@ if table.find(main, checkplaceid) then
     textlabel6.Size = UDim2.new(0, 96, 0, 40)
     textlabel6.BackgroundTransparency = 1
     textlabel6.TextSize = 52
-    textlabel6.Text = "working 2023"
+    
+    local file_exists = isfile("DoNotDelete_Welcoming")
+    if file_exists then
+        textlabel6.Text = "Welcome Back, "..Players.LocalPlayer.Name
+    else
+        textlabel6.Text = "Welcome, "..Players.LocalPlayer.Name
+        appendfile("DoNotDelete_Welcoming")
+    end
 
     local MainFrame = Instance.new("Frame")
     MainFrame.Parent = ScreenGui
@@ -71,6 +78,7 @@ if table.find(main, checkplaceid) then
     
     ShutdownButton.MouseButton1Click:Connect(function()
         play("6042053626", 0.5, false)
+        textlabel6.Text = "Shutting Off..."
         MainFrame.Visible = false
         task.wait(1.5)
         game:Shutdown()
