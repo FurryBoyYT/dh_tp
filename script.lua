@@ -215,13 +215,13 @@ elseif table.find(dh, checkplaceid) then
     TeleportBack.Position = UDim2.new(0, 1801, 0, 700)
     TeleportBack.Size = UDim2.new(0.4, -650, 0, 40)
     TeleportBack.Font = Enum.Font.SourceSans
-    TeleportBack.Text = "Leave"
+    TeleportBack.Text = "Shutdown"
     TeleportBack.TextColor3 = Color3.new(0, 255, 255)
     TeleportBack.TextSize = 20
     
     TeleportBack.MouseButton1Click:Connect(function()
         play("6042053626", 1, false)
-        TeleportBack.Text = "Leaving..."
+        TeleportBack.Text = "Shutting Down..."
         MainFrame.Visible = false
         task.wait(1.5)
         game:Shutdown()
