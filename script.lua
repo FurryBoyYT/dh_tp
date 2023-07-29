@@ -123,6 +123,7 @@ if table.find(main, checkplaceid) then
                 disconnectedText.Visible = true
             else
                 disconnectedText.Visible = false
+                MainFrame.Visible = true
             end
         end
     end)
