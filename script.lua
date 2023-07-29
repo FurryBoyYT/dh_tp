@@ -32,6 +32,7 @@ if table.find(main, checkplaceid) then
     
     -- // make a list of sounds here.
     local sounds = {"1841118237", "1846199973", "1844684915", "1838825149", "1845385519", "1841476350", "1845463211", "1842960025", "1845439457", "1838124274", "9046476113", "1843700415"}
+    local soundsCount = 12
 
     local function play_random_music(soundId)
         sound2.SoundId = "rbxassetid://" .. soundId
@@ -42,7 +43,7 @@ if table.find(main, checkplaceid) then
     local isalreadyexisting = false
     function clickSound()
         if isalreadyexisting then 
-            print("there are already sounds!!!")
+            warn("there are already sounds!!!")
             return
         end
         -- // this is a debug thing
@@ -69,7 +70,7 @@ if table.find(main, checkplaceid) then
                 sound2.Ended:Wait()
             else
                 -- // sound is not playing, play a random sound out of list.
-                local SelectedSound = sounds[math.random(1, #sounds)]
+                local SelectedSound = sounds[math.random(1, soundsCount)]
                 -- // now play the music.
                 
                 play_random_music(SelectedSound)
@@ -96,6 +97,36 @@ if table.find(main, checkplaceid) then
     textlabel6.BackgroundTransparency = 1
     textlabel6.TextSize = 52
     
+    local disconnectedText = Instance.new("TextLabel", ScreenGui)
+    disconnectedText.Position = UDim2.new(0, 400, 0, 900)
+    disconnectedText.Size = UDim2.new(0, 0, 0, 50)
+    disconnectedText.Text = "You were disconnected. Shut off and Retry."
+    disconnectedText.TextSize = 20
+    disconnectedText.TextColor3 = Color3.new(255, 144, 144)
+    disconnectedText.Visible = false
+    disconnectedText.BackgroundTransparency = 1
+
+    local MainFrame = Instance.new("Frame")
+    MainFrame.Parent = ScreenGui
+    MainFrame.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
+    MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
+    MainFrame.Size = UDim2.new(0, 400, 0, 200)
+
+    spawn(function()
+        local new4
+        while task.wait() do
+            new4 = game:GetService("Stats").DataReceiveKbps
+            if new4 == 0 then
+                game:GetService("RunService"):SetRobloxGuiFocused(false)
+                MainFrame.Visible = false
+                task.wait(10)
+                disconnectedText.Visible = true
+            else
+                disconnectedText.Visible = false
+            end
+        end
+    end)
+
     local file_exists = isfile("DoNotDelete_Welcoming")
     if file_exists then
         textlabel6.Text = "Welcome Back, "..Players.LocalPlayer.Name
@@ -103,12 +134,6 @@ if table.find(main, checkplaceid) then
         textlabel6.Text = "Welcome, "..Players.LocalPlayer.Name
         writefile("DoNotDelete_Welcoming", math.random(1, 1000000).." random number Xd")
     end
-
-    local MainFrame = Instance.new("Frame")
-    MainFrame.Parent = ScreenGui
-    MainFrame.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
-    MainFrame.Position = UDim2.new(0.5, -200, 0.5, -100)
-    MainFrame.Size = UDim2.new(0, 400, 0, 200)
 
     local ShutdownButton = Instance.new("ImageButton", ScreenGui)
     ShutdownButton.Position = UDim2.new(0.5, -243, 0.5, -100)
