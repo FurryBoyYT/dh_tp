@@ -301,9 +301,6 @@ elseif table.find(dh, checkplaceid) then
     TeleportBack.TextSize = 20
     
     TeleportBack.MouseButton1Click:Connect(function()
-        spawn(clickSound)
-        TeleportBack.Text = "Shutting Down..."
-        task.wait(1.5)
         game:Shutdown()
     end)
 end
